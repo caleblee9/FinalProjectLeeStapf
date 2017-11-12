@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
+#include <fstream>
+
 
 using namespace std;
 
@@ -14,18 +16,40 @@ int main() {
 	srand(time(NULL));
 	int choice;
 	menu();
-	string nm;
 again:	cin >> choice;
 	switch(choice) {
-		case 1:
-			cout << "Please enter name";
+		case 1:{
+			cout << "Please enter name: ";
+			string nm;
+			string tmpName;
+			Student st1;
+			string tmp;
+			cin.ignore();
+			getline(cin, nm);
+			ifstream sFile;
+			sFile.open("students.txt");
+			while(!sFile.eof()) {
+				getline(sFile, tmp, '|');
+				if(tmp == nm) {
+					st1.setName(nm);
+					getline(sFile, tmp, '|');
+					st1.setID(stoi(tmp));
+					getline(sFile, tmp, '|');
+					st1.setBalance(stoi(tmp));
+				}
+			}
+			st1.acctInfo();
 			break;
+			}
 		case 2:
 			{
+			string nm;
+			cin.ignore();
 			cout << "Please enter name: ";
-			cin >> nm;
-			Student st1((int)(rand() % 500 + 1), nm);
+			getline(cin, nm);
+			Student st1(nm, (int)(rand() % 500 + 1));
 			st1.acctInfo();
+			st1.saveStudent();
 			break;
 			}
 		case 3:
