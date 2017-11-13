@@ -11,26 +11,37 @@
 #include<vector>
 #include<sstream>
 #include<string>
+#include "book.h"
+#include <stdlib.h>
+
+
 using namespace std;
 
 int main() {
 
-	vector<string>catalog;
+	vector<Book>catalog;
 	ifstream catalog_file("catalog.txt");
 	string line;
-
-	while(getline(catalog_file, line))
+	string nm;
+	string auth;
+	int num;
+	while(!catalog_file.eof())
 	{
-		string new_line;
-		new_line = line + "\n";
-		catalog.push_back(new_line);
+		getline(catalog_file, line, '|');
+		nm = line;
+		getline(catalog_file, line, '|');
+		auth = line;
+		getline(catalog_file, line);
+		num = atoi(line.c_str());
+		Book tmp(nm, auth, num);
+		catalog.push_back(tmp);
 	}
 
 	int i;
 
 	for(i=0;i<catalog.size();i++)
 	{
-		cout << catalog[i] << endl;
+		catalog[i].display();
 	}
 
 	return 0;
