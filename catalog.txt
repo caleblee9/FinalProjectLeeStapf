@@ -1,0 +1,53 @@
+Moby Dick|Herman Melville|201701
+The Odyssey|Homer|201702
+Hamlet|William Shakespeare|201703
+Aenied|Virgil|201704
+Catch-22|Joseph Heller|201705
+Jane Eyre|Charlotte Bronte|201706
+Paradise Lost|John Milton|201707
+Animal Farm|George Orwell|201708
+Antigone|Sophocles|201709
+Frankenstein|Mary Shelly|201710
+Plainsong|Kent Haruf|201711
+The Glass Castle|Jeannette Wells|201712
+Dracula|Bram Stoker|201713
+Things Fall Apart|Chinua Achebe|201714
+Catcher in the Rye|J.D. Salinger|201715
+War and Peace|Leo Tolstoy|201716
+Great Expectations|Charles Dickens|201717
+Crime and Punishment|Fyodor Dostoevsky|201718
+To Kill a Mockingbird|Harper Lee|201719
+The Great Gatsby|F. Scott Fitzgerald|201720
+The Grapes of Wrath|John Steinbeck|201721
+Lord of the Flies|William Golding|201722
+Charlotte's Web|EB White|201723
+The Handmaid's Tale|Margaret Atwood|201724
+Alice in Wonderland|Jane Carruth|201725
+Fahrenheit 451|Ray Bradbury|201726
+White Fang|Jack London|201727
+Treasure Island|Robert Stevenson|201728
+Gulliver's Travels|Jonathan Swift|201729
+The Adventures of Huckleberry Finn|Mark Twain|201730
+Romeo and Juliet|William Shakespeare|201731
+The Canterbury Tales|Geoffrey Chaucer|201732
+Robinson Cruseo|Daniel Defoe|201733
+The Picture of Dorian Gray|Oscar Wilde|201734
+The Chronicles of Narnia|CS Lewis|201735
+The Scarlet Letter|Nathaniel Hawthorne|201736
+The Book Thief|Marcus Zusak|201737
+Gone with the Wind|Margaret Mitchell|201738
+The Fault in our Stars|John Green|201739
+The Giving Tree|Shel Silverstien|201740
+The Alchemist|Paulo Coelho|201741
+The Help|Kathryn Stockett|201742
+Of Mice and Men|John Steinbeck|201743
+A Wrinkle in Time|Madeleine L'Engle|201744
+The Adventures of Sherlock Holmes|Arthur Conan Doyle|201745
+The Color Purple|Alice Walker|201746
+And Then There Were None|Agatha Christie|201747
+The Shining|Stephen King|201748
+Holes|Louis Sachar|201749
+The Cat in the Hat|Dr. Seuss|201750
+
+
+
