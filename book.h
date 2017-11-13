@@ -15,10 +15,17 @@ class Book {
 		string author;
 		int number;
 	public:
+		Book(string, string, int);
 		string getTitle() const;
 		string getAuthor() const;
 		int getNumber() const;
+		void display();
 };
+Book::Book(string name, string auth, int num) {
+	title = name;
+	author = auth;
+	number = num;
+}
 string Book::getTitle() const{
 	return title;
 }
@@ -27,4 +34,7 @@ string Book::getAuthor() const{
 }
 int Book::getNumber() const {
 	return number;
+}
+void Book::display() {
+	cout << title << " " << author << " " << number << endl;
 }
