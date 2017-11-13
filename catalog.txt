@@ -48,6 +48,3 @@ And Then There Were None|Agatha Christie|201747
 The Shining|Stephen King|201748
 Holes|Louis Sachar|201749
 The Cat in the Hat|Dr. Seuss|201750
-
-
-
