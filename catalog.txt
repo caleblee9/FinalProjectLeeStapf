@@ -1,9 +1,9 @@
-Moby Dick		Herman Melville		201701
-The Odyssey 		Homer			201702
-Hamlet			William Shakespeare	201703
-Aenied			Virgil			201704
-Catch-22		Joseph Heller		201705
-Jane Eyre		Charlotte Bronte	201706
+Moby Dick|Herman Melville|201701
+The Odyssey|Homer|201702
+Hamlet|William Shakespeare|201703
+Aenied|Virgil|201704
+Catch-22|Joseph Heller|201705
+Jane Eyre|Charlotte Bronte|201706
 Paradise Lost|John Milton|201707
 Animal Farm|George Orwell|201708
 Antigone|Sophocles|201709
@@ -33,5 +33,21 @@ The Canterbury Tales|Geoffrey Chaucer|201732
 Robinson Cruseo|Daniel Defoe|201733
 The Picture of Dorian Gray|Oscar Wilde|201734
 The Chronicles of Narnia|CS Lewis|201735
+The Scarlet Letter|Nathaniel Hawthorne|201736
+The Book Thief|Marcus Zusak|201737
+Gone with the Wind|Margaret Mitchell|201738
+The Fault in our Stars|John Green|201739
+The Giving Tree|Shel Silverstien|201740
+The Alchemist|Paulo Coelho|201741
+The Help|Kathryn Stockett|201742
+Of Mice and Men|John Steinbeck|201743
+A Wrinkle in Time|Madeleine L'Engle|201744
+The Adventures of Sherlock Holmes|Arthur Conan Doyle|201745
+The Color Purple|Alice Walker|201746
+And Then There Were None|Agatha Christie|201747
+The Shining|Stephen King|201748
+Holes|Louis Sachar|201749
+The Cat in the Hat|Dr. Seuss|201750
+
 
 
