@@ -37,6 +37,7 @@ again:	cin >> choice;
 					getline(sFile, tmp, '|');
 					st1.setBalance(stoi(tmp));
 				}
+				getline(sFile, tmp);
 			}
 			st1.acctInfo();
 			break;
