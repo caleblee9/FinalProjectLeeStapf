@@ -113,7 +113,7 @@ void Student::checkOut(int num) {
 void Student::saveStudent() {
 	ofstream sFile;
 	sFile.open("students.txt", ios_base::app);
-	sFile << name << '|' << id << '|' << balance << '|';
+	sFile << id << '|' << name << '|' << balance << '|';
 	for(auto &i : books) {
 		sFile << i.getTitle() << ' ';
 	}
