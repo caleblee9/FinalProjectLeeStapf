@@ -115,7 +115,7 @@ void Student::saveStudent() {
 	sFile.open("students.txt", ios_base::app);
 	sFile << id << '|' << name << '|' << balance << '|';
 	for(auto &i : books) {
-		sFile << i.getTitle() << ' ';
+		sFile << i.getNumber() << ' ';
 	}
 	sFile << endl;
 	sFile.close();
