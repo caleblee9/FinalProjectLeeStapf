@@ -36,14 +36,6 @@ int main() {
 		Book tmp(nm, auth, num);
 		catalog.push_back(tmp);
 	}
-
-	int i;
-
-	for(i=0;i<catalog.size();i++)
-	{
-		catalog[i].display();
-	}
-
 	return 0;
 
 }
