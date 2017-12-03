@@ -13,13 +13,13 @@ class Book {
 	private:
 		string title;
 		string author;
-		int number;
+		int number;		//book ID number, used for determining what books students have
 	public:
-		Book(string, string, int);
-		string getTitle() const;
+		Book(string, string, int);	//constructor
+		string getTitle() const;	//getters
 		string getAuthor() const;
 		int getNumber() const;
-		void display();
+		void display();			//display the book information
 };
 Book::Book(string name, string auth, int num) {
 	title = name;
