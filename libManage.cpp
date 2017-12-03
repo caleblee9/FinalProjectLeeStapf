@@ -6,14 +6,16 @@
 #include <string>
 #include <fstream>
 
-
 using namespace std;
 
 void menu();
 void login();
+void reg();
+vector<Book> getBooks();
 
 int main() {
 	srand(time(NULL));
+	vector<Book> books = getBooks();
 	int choice;
 	do {
 		menu();
@@ -60,23 +62,43 @@ void menu() {
 void login() {
 	cout << "Please Scan ID: ";
 	int num;
-	Student st1;
-	string tmp;
+	Student st1;	//used to get student information and store it in a local variable
+	string tmp;	//to pull information from file
 	cin.ignore();
 	cin >> num;
 	ifstream sFile;
 	sFile.open("students.txt");
 	while(!sFile.eof()) {
-		getline(sFile, tmp, '|');
-		if(atoi(tmp.c_str()) == num) {
+		getline(sFile, tmp, '|');	//look at ID of student
+		if(atoi(tmp.c_str()) == num) {	//if matched
 			st1.setID(num);
-			getline(sFile, tmp, '|');
+			getline(sFile, tmp, '|');		//pull student information from file
 			st1.setName(tmp);
 			getline(sFile, tmp, '|');
 			st1.setBalance(stoi(tmp));
 		}
-		getline(sFile, tmp);
-		
+		getline(sFile, tmp);	
 	}
-	
+	sFile.close();
+}
+vector<Book> getBooks(){
+	vector<Book> catalog;
+	ifstream catalog_file("catalog.txt");
+	string line;
+	string nm;
+	string auth;
+	int num;
+	while(!catalog_file.eof())
+	{
+		getline(catalog_file, line, '|');
+		nm = line;
+		getline(catalog_file, line, '|');
+		auth = line;
+		getline(catalog_file, line);
+		num = atoi(line.c_str());
+		Book tmp(nm, auth, num);
+		catalog.push_back(tmp);
+	}
+	catalog_file.close();
+	return catalog;
 }
