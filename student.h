@@ -18,13 +18,12 @@ class Student {
 		string name;
 		int id;
 		double balance;
-		vector<Book> books;
+		vector<int> books;
 	public:
 		Student();
 		Student(string, int);
-		void checkIn(Book);
+		void checkIn(int);
 		void acctInfo();
-		void checkOut(string);
 		void checkOut(int);
 		void saveStudent();
 		string getName() const;
@@ -33,7 +32,7 @@ class Student {
 		void setID(int);
 		void setBalance(double);
 		double getBalance() const;
-		vector<Book> getBooks() const;
+		vector<int> getBooks() const;
 
 		Student operator=(const Student&) const;
 			
@@ -48,7 +47,7 @@ void Student::setID(int num) {
 void Student::setBalance(double bal) {
 	balance = bal;
 }
-vector<Book> Student::getBooks() const{
+vector<int> Student::getBooks() const{
 	return books;
 }
 int Student::getID() const{
@@ -78,8 +77,8 @@ Student::Student(string nm, int num) {
 	name = nm;
 	balance = 0;
 }
-void Student::checkIn(Book b1) {
-	books.push_back(b1);
+void Student::checkOut(int num) {
+	books.push_back(num);
 }
 void Student::acctInfo() {
 	cout << "Name: " << name << endl;
@@ -90,22 +89,14 @@ void Student::acctInfo() {
 		cout << "No checked out books" << endl;
 	} else {
 		for(auto &i : books) {
-			cout << i.getTitle() << endl;
+			cout << i << endl;
 		}
 	}
 }
-void Student::checkOut(string title) {
+void Student::checkIn(int num) {
 	int i;
 	for(i = 0; i < books.size(); i++) {
-		if(books[i].getTitle() == title) {
-			books.erase(books.begin() + i - 1);
-		}
-	}
-}
-void Student::checkOut(int num) {
-	int i;
-	for(i = 0; i < books.size(); i++) {
-		if(books[i].getNumber() == num) {
+		if(books[i] == num) {
 			books.erase(books.begin() + i - 1);
 		}
 	}
@@ -115,7 +106,7 @@ void Student::saveStudent() {
 	sFile.open("students.txt", ios_base::app);
 	sFile << id << '|' << name << '|' << balance << '|';
 	for(auto &i : books) {
-		sFile << i.getNumber() << ' ';
+		sFile << i << ' ';
 	}
 	sFile << endl;
 	sFile.close();
