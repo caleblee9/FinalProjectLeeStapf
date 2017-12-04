@@ -29,7 +29,7 @@ Book::Book(string name, string auth, int num) {
 string Book::getTitle() const{
 	return title;
 }
-string Book::getAuthor() const{
+string Book::getAuthor() const{		//getters
 	return author;
 }
 int Book::getNumber() const {
