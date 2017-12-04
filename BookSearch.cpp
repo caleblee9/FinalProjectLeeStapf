@@ -25,15 +25,15 @@ int main()
 	catalog.open("catalog.txt");
 
 	cout << "What book would you like to search for?" << endl;
-	cin >> search;
+	getline(cin, search);
 
 	if (catalog.is_open())
 	{
 		while (!catalog.eof())
 		{
-			getline(catalog, line);
+			getline(catalog, line, '|');
 
-			if ((offset = line.find(search, 0)) != string::npos)
+			if (search == line)
 			{
 				count = 1;
 				if(count == 1)
@@ -50,8 +50,6 @@ int main()
 	{
 		cout << "Could not open file" << endl;
 	}
-	system("PAUSE");
-
 	return 0;
 
 }
