@@ -12,7 +12,7 @@ using namespace std;
 void mainMenu();				//display menu
 void studentOptions(Student, vector<Book>);	//student menu
 void login(vector<Book>);			//login student
-void reg();					//register student
+void reg(vector<Book>);					//register student
 vector<Book> getBooks();			//list of available books
 void updateCatalog(vector<Book>);
 
@@ -37,18 +37,7 @@ again:		if(!(cin >> choice)){
 			}
 			case 2:
 			{
-				int num;
-				string nm;	//name of registering student
-				cin.ignore();
-				cout << "Please Scan ID ";
-				cin >> num;
-				cin.ignore();
-				cout << "Please enter name: ";
-				getline(cin, nm);
-				Student st1(nm, num);
-				st1.acctInfo();
-				st1.saveStudent();	//save student to file
-				studentOptions(st1, books);
+				reg(books);
 				break;
 			}
 			case 3:
@@ -81,6 +70,7 @@ void login(vector<Book> catalog) {
 	while(!sFile.eof()) {
 		getline(sFile, tmp, '|');	//look at ID of student
 		if(atoi(tmp.c_str()) == num) {	//if matched
+			cout << endl;
 			st1.setID(num);
 			getline(sFile, tmp, '|');		//pull student information from file
 			st1.setName(tmp);
@@ -155,7 +145,8 @@ inv:		if(!(cin >> choice)) {
 				ifstream catalog;
 				catalog.open("catalog.txt");
 
-				cout << "What book would you like to search for?" << endl;
+				cout << "What book would you like to search for?: ";
+				cin.ignore();
 				getline(cin, search);
 
 				if (catalog.is_open())
@@ -166,9 +157,10 @@ inv:		if(!(cin >> choice)) {
 
 						if (search == line)
 						{
-							cout << "The book is in the catalog" << endl;
+							cout << search << " is in the catalog\n" << endl;
 							break;
 						}
+						getline(catalog, line);
 					}
 					catalog.close();
 				} else {
@@ -194,4 +186,33 @@ void updateCatalog(vector<Book> books) {
 		cf << c.getTitle() << '|' << c.getAuthor() << '|' << c.getNumber() << endl; //rewrite the catalog file	
 	}
 	cf.close();
+}
+void reg(vector<Book> catalog) {
+	int num;
+	string nm;	//name of registering student
+	cin.ignore();
+	cout << "Please Scan ID ";
+	cin >> num;
+	string tmp;
+	ifstream sFile;
+	sFile.open("students.txt");
+	while(!sFile.eof()) {
+		getline(sFile, tmp, '|');	//look at ID of students
+		if(atoi(tmp.c_str()) == num) {	//if matched, student already has an account
+			cout << "Account already registered" << endl;
+			sFile.close();
+			return;
+			
+		}
+		getline(sFile, tmp);	
+	}
+	sFile.close();
+	cin.ignore();
+	cout << "Please enter name: ";
+	getline(cin, nm);
+	Student st1(nm, num);
+	st1.acctInfo();
+	st1.saveStudent();	//save student to file
+	studentOptions(st1, catalog);
+
 }
