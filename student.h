@@ -15,17 +15,17 @@ using namespace std;
 
 class Student {		
 	protected:
-		string name;
-		int id;
-		double balance;
+		string name;	//student name
+		int id;		//student ID number
+		double balance;		//fees owed
 		vector<int> books;
 	public:
 		Student();
-		Student(string, int);
-		void checkIn(int);
-		void acctInfo();
-		void checkOut(int);
-		void saveStudent();
+		Student(string, int);	//constructors
+		void checkIn(int);	//check in a book
+		void acctInfo();	//display name, ID, balance, books
+		void checkOut(int);	
+		void saveStudent();	//save student to students.txt file
 		string getName() const;
 		int getID() const;
 		void setName(string);
@@ -69,12 +69,12 @@ string Student::getName() const{
 }
 Student::Student() {
 	id = 0;
-	name = " ";
+	name = " ";	//default constructor
 	balance = 0;
 }
 Student::Student(string nm, int num) {
 	id = num;
-	name = nm;
+	name = nm;		
 	balance = 0;
 }
 void Student::checkOut(int num) {
@@ -106,7 +106,7 @@ void Student::saveStudent() {
 	sFile.open("students.txt", ios_base::app);
 	sFile << id << '|' << name << '|' << balance << '|';
 	for(auto &i : books) {
-		sFile << i << ' ';
+		sFile << i << ' ';	//saves just book numbers to be compared with books vector in main
 	}
 	sFile << endl;
 	sFile.close();
