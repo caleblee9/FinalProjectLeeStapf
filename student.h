@@ -13,29 +13,30 @@ using namespace std;
 ------------------------------------------------------------
 */
 
-class Student {		
-	protected:
-		string name;	//student name
-		int id;		//student ID number
-		double balance;		//fees owed
-		vector<int> books;
-	public:
-		Student();
-		Student(string, int);	//constructors
-		void checkIn(int);	//check in a book
-		void acctInfo();	//display name, ID, balance, books
-		void checkOut(int);	
-		void saveStudent();	//save student to students.txt file
-		string getName() const;
-		int getID() const;
-		void setName(string);
-		void setID(int);
-		void setBalance(double);
-		double getBalance() const;
-		vector<int> getBooks() const;
+class Student {
+protected:
+	string name;
+	int id;
+	double balance;
+	vector<Book> books;
+public:
+	Student();
+	Student(string, int);
+	void checkIn(Book);
+	void acctInfo();
+	void checkOut(string);
+	void checkOut(int);
+	void saveStudent();
+	string getName() const;
+	int getID() const;
+	void setName(string);
+	void setID(int);
+	void setBalance(double);
+	double getBalance() const;
+	vector<Book> getBooks() const;
 
-		Student operator=(const Student&) const;
-			
+	Student operator=(const Student&) const;
+
 };
 
 void Student::setName(string nm) {
@@ -47,13 +48,13 @@ void Student::setID(int num) {
 void Student::setBalance(double bal) {
 	balance = bal;
 }
-vector<int> Student::getBooks() const{
+vector<Book> Student::getBooks() const {
 	return books;
 }
-int Student::getID() const{
+int Student::getID() const {
 	return id;
 }
-double Student::getBalance() const{ 
+double Student::getBalance() const {
 	return balance;
 }
 Student Student::operator=(const Student &st1) const {
@@ -62,41 +63,50 @@ Student Student::operator=(const Student &st1) const {
 	tmp.id = st1.getID();
 	tmp.balance = st1.getBalance();
 	tmp.books = st1.getBooks();
-return tmp;
+	return tmp;
 }
-string Student::getName() const{
+string Student::getName() const {
 	return name;
 }
 Student::Student() {
 	id = 0;
-	name = " ";	//default constructor
+	name = " ";
 	balance = 0;
 }
 Student::Student(string nm, int num) {
 	id = num;
-	name = nm;		
+	name = nm;
 	balance = 0;
 }
-void Student::checkOut(int num) {
-	books.push_back(num);
+void Student::checkIn(Book b1) {
+	books.push_back(b1);
 }
 void Student::acctInfo() {
 	cout << "Name: " << name << endl;
 	cout << "ID: " << id << endl;
 	cout << "Balance: $" << balance << endl;
 	cout << "Books: ";
-	if(books.empty()) {
+	if (books.empty()) {
 		cout << "No checked out books" << endl;
-	} else {
-		for(auto &i : books) {
-			cout << i << endl;
+	}
+	else {
+		for (auto &i : books) {
+			cout << i.getTitle() << endl;
 		}
 	}
 }
-void Student::checkIn(int num) {
+void Student::checkOut(string title) {
 	int i;
-	for(i = 0; i < books.size(); i++) {
-		if(books[i] == num) {
+	for (i = 0; i < books.size(); i++) {
+		if (books[i].getTitle() == title) {
+			books.erase(books.begin() + i - 1);
+		}
+	}
+}
+void Student::checkOut(int num) {
+	int i;
+	for (i = 0; i < books.size(); i++) {
+		if (books[i].getNumber() == num) {
 			books.erase(books.begin() + i - 1);
 		}
 	}
@@ -104,10 +114,11 @@ void Student::checkIn(int num) {
 void Student::saveStudent() {
 	ofstream sFile;
 	sFile.open("students.txt", ios_base::app);
-	sFile << id << '|' << name << '|' << balance << '|';
-	for(auto &i : books) {
-		sFile << i << ' ';	//saves just book numbers to be compared with books vector in main
+	sFile << name << '|' << id << '|' << balance << '|';
+	for (auto &i : books) {
+		sFile << i.getTitle() << ' ';
 	}
 	sFile << endl;
 	sFile.close();
 }
+
