@@ -19,7 +19,13 @@ void updateCatalog(vector<Book>);
 
 int main() {
 	srand(time(NULL));
-	vector<Book> books = getBooks();	//list of Books
+	try {
+		vector<Book> books = getBooks();	//list of Books
+	} catch (const char* feo){
+		cout << "Can't open catalog.txt, make sure you have it and try again" << endl;
+		return 0;
+	}
+	/*
 	int choice;
 	do {
 		mainMenu();
@@ -32,13 +38,23 @@ again:		if(!(cin >> choice)){
 		switch(choice) {
 			case 1:	
 			{
-				login(books);	
-				break;
+				try {
+					login(books);	
+					break;
+				} catch (string feo) {
+					cout << "Can't open students.txt, please make sure you have it and try again" << endl;
+					return 0;
+				}
 			}
 			case 2:
 			{
-				reg(books);
-				break;
+				try {
+					reg(books);
+					break;
+				} catch(string feo) {
+					cout << "Can't open students.txt, please make sure you have it and try again" << endl;
+					return 0;
+				}
 			}
 			case 3:
 				cout << "Exiting..." << endl;
@@ -49,6 +65,7 @@ again:		if(!(cin >> choice)){
 		}
 		cout << endl;
 	} while(choice != 3);
+*/
 	return 0;	
 }
 void mainMenu() {
@@ -59,14 +76,18 @@ void mainMenu() {
 	cout << "(3) Exit" << endl;
 }
 void login(vector<Book> catalog) {
+	ifstream sFile;
+	sFile.open("students.txt");
+	if(!(sFile.is_open())) {
+		throw "Can't open file";
+		return;
+	}
 	cout << "Please Scan ID: ";
 	int num;
 	Student st1;	//used to get student information and store it in a local variable
 	string tmp;	//to pull information from file
 	cin.ignore();
 	cin >> num;
-	ifstream sFile;
-	sFile.open("students.txt");
 	while(!sFile.eof()) {
 		getline(sFile, tmp, '|');	//look at ID of student
 		if(atoi(tmp.c_str()) == num) {	//if matched
@@ -87,8 +108,12 @@ void login(vector<Book> catalog) {
 	sFile.close();
 }
 vector<Book> getBooks(){
+	ifstream catalog_file("catalog.txt");
+	if(!(catalog_file.is_open())) {
+		throw "Can't open file";
+	} 
 	vector<Book> catalog;		//list of books
-	ifstream catalog_file("catalog.txt"); 
+	
 	string line;
 	string nm;	//book number
 	string auth;	//author
@@ -151,11 +176,11 @@ inv:		if(!(cin >> choice)) {
 
 				if (catalog.is_open())
 				{
-					while (!catalog.eof())
+					while (!catalog.eof())		///loop until end of file
 					{			
-						getline(catalog, line, '|');
+						getline(catalog, line, '|');	//check title
 
-						if (search == line)
+						if (search == line)	//if book is found
 						{
 							cout << search << " is in the catalog\n" << endl;
 							break;
@@ -164,7 +189,7 @@ inv:		if(!(cin >> choice)) {
 					}
 					catalog.close();
 				} else {
-					cout << "Could not open file" << endl;
+					throw "Can't open file";
 				}
 
 				break;
@@ -181,21 +206,31 @@ inv:		if(!(cin >> choice)) {
 	}while(choice != 5);
 }
 void updateCatalog(vector<Book> books) {
-	ofstream cf("catalog.txt");
-	for(auto &c : books) {
-		cf << c.getTitle() << '|' << c.getAuthor() << '|' << c.getNumber() << endl; //rewrite the catalog file	
+	ofstream cf;
+	cf.open("catalog.txt");
+	if(cf.is_open()){
+		for(auto &c : books) {
+			cf << c.getTitle() << '|' << c.getAuthor() << '|' << c.getNumber() << endl; //rewrite the catalog file	
+		}
+		cf.close();
+	} else {
+		throw "Can't open file";
 	}
-	cf.close();
+	
 }
 void reg(vector<Book> catalog) {
+	ifstream sFile;
+	sFile.open("students.txt");
+	if(!sFile.is_open()) {
+		throw "Can't open File";
+		return;
+	}
 	int num;
 	string nm;	//name of registering student
 	cin.ignore();
 	cout << "Please Scan ID ";
 	cin >> num;
 	string tmp;
-	ifstream sFile;
-	sFile.open("students.txt");
 	while(!sFile.eof()) {
 		getline(sFile, tmp, '|');	//look at ID of students
 		if(atoi(tmp.c_str()) == num) {	//if matched, student already has an account
