@@ -119,7 +119,7 @@ void studentOptions(Student std, Catalog c1) {
 		cout << "5. Check in book by number" << endl;
 		cout << "6. Check out book by title" << endl;
 		cout << "7. Check out book by number" << endl;
-		cout << "8. Exit" << endl;
+		cout << "8. Logout" << endl;
 inv:		if(!(cin >> choice)) {
 			cout << "Invalid input, please enter a valid option: ";	//if user enters a non-integer
 			cin.clear();
