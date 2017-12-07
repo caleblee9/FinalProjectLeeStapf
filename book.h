@@ -10,31 +10,45 @@ using namespace std;
 ----------------------------------------------------
 */
 class Book {
-	private:
-		string title;
-		string author;
-		int number;		//book ID number, used for determining what books students have
-	public:
-		Book(string, string, int);	//constructor
-		string getTitle() const;	//getters
-		string getAuthor() const;
-		int getNumber() const;
-		void display();			//display the book information
+private:
+	string title;
+	string author;
+	int number;
+
+public:
+	bool checkedOut;	//if in a students book vector
+
+	Book(string, string, int);
+	string getTitle() const;
+	string getAuthor() const;
+	int getNumber() const;
+	void display();
 };
 Book::Book(string name, string auth, int num) {
 	title = name;
 	author = auth;
-	number = num;
+	number = num;		//constructor
+	checkedOut = false;	//initialize to not checked out
 }
-string Book::getTitle() const{
+string Book::getTitle() const {
 	return title;
 }
-string Book::getAuthor() const{		//getters
+string Book::getAuthor() const {	//getters
 	return author;
 }
 int Book::getNumber() const {
 	return number;
 }
+
+
 void Book::display() {
-	cout << title << " " << author << " " << number << endl;
+	
+	if (!checkedOut)
+	{
+		cout << title << ",  " << author << ",  " << number << ",  Checked In" << endl;
+	}
+	else
+	{
+		cout << title << ",  " << author << ",  " << number << ",  Checked Out" << endl;
+	}
 }
