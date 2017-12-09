@@ -21,6 +21,7 @@ int main() {
 	Catalog books("catalog.txt");	
 	int choice;
 	do {
+		system("clear");
 		mainMenu();
 again:		if(!(cin >> choice)){
 			cin.clear();
@@ -74,6 +75,7 @@ void login(Catalog c1) {
 		throw "Can't open file";
 		return;
 	}
+	system("clear");
 	cout << "Please Scan ID: ";
 	int num;
 	Student st1;	//used to get student information and store it in a local variable
@@ -81,6 +83,7 @@ void login(Catalog c1) {
 	string tmp2;
 	cin.ignore();
 	cin >> num;
+	system("clear");
 	while(getline(sFile, tmp, '|')) {
 		tmp2 = tmp;
 		if(atoi(tmp2.c_str()) == num) {	//if matched
@@ -126,21 +129,23 @@ inv:		if(!(cin >> choice)) {
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			goto inv;
 		}
+		system("clear");
 		switch(choice) {
 			case 1:
 				cout << endl;
 				cout << "******ACCOUNT INFORMATION******" << endl;	//display account info
 				std.acctInfo();
-				cout << endl;
+				cout << endl << endl << endl;
 				break;
 			case 2:
 				c1.display();
+				cout << endl << endl;
 				break;
 			case 3:
 			{
 				string search;
 				string line;
-
+				int found = 0;
 				ifstream catalog;
 				catalog.open("catalog.txt");
 
@@ -156,10 +161,14 @@ inv:		if(!(cin >> choice)) {
 
 						if (search == line)	//if book is found
 						{
-							cout << search << " is in the catalog\n" << endl;
+							cout << search << " is in the catalog\n" << endl << endl;
+							found = 1;
 							break;
 						}
 						getline(catalog, line);
+					}
+					if(found == 0) {
+						cout << search << " is not in the catalog" << endl << endl;
 					}
 					catalog.close();
 				} else {
@@ -260,6 +269,7 @@ void reg(Catalog c1){
 		throw "Can't open File";
 		return;
 	}
+	system("clear");
 	int num;
 	string nm;	//name of registering student
 	cin.ignore();
@@ -280,7 +290,12 @@ void reg(Catalog c1){
 	cin.ignore();
 	cout << "Please enter name: ";
 	getline(cin, nm);
+	while(nm == "") {
+		cout << "No name entered, please enter again: ";
+		getline(cin, nm);
+	}
 	Student st1(nm, num);
 	st1.saveStudent();
+	cout << endl << endl;
 	studentOptions(st1, c1);
 }
