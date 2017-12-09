@@ -21,7 +21,6 @@ int main() {
 	Catalog books("catalog.txt");	
 	int choice;
 	do {
-		system("clear");
 		mainMenu();
 again:		if(!(cin >> choice)){
 			cin.clear();
@@ -32,6 +31,8 @@ again:		if(!(cin >> choice)){
 		switch(choice) {
 			case 1:	
 			{
+			
+				system("clear");
 				try {
 					login(books);	
 					break;
@@ -42,6 +43,8 @@ again:		if(!(cin >> choice)){
 			}
 			case 2:
 			{
+				
+				system("clear");
 				try {
 					reg(books);
 					break;
@@ -129,20 +132,25 @@ inv:		if(!(cin >> choice)) {
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			goto inv;
 		}
-		system("clear");
 		switch(choice) {
 			case 1:
+				
+				system("clear");
 				cout << endl;
 				cout << "******ACCOUNT INFORMATION******" << endl;	//display account info
 				std.acctInfo();
 				cout << endl << endl << endl;
 				break;
 			case 2:
+				system("clear");
+
 				c1.display();
 				cout << endl << endl;
 				break;
 			case 3:
 			{
+				system("clear");
+
 				string search;
 				string line;
 				int found = 0;
@@ -178,6 +186,8 @@ inv:		if(!(cin >> choice)) {
 				break;
 			}
 			case 4:
+				system("clear");
+
 				{
 					string booktitle;
 					cout << "What is the book title you want to check in?  ";
@@ -197,6 +207,8 @@ inv:		if(!(cin >> choice)) {
 				}
 			
 			case 5:
+				system("clear");
+
 				{
 					int booknumber;
 					cout << "What is the book number you want to check in?  ";
@@ -216,6 +228,8 @@ inv:		if(!(cin >> choice)) {
 
 				break;
 			case 6:
+				system("clear");
+
 				{
 					string booktitle;
 					cout << "What is the book title you want to check out?  ";
@@ -238,18 +252,20 @@ inv:		if(!(cin >> choice)) {
 				break;
 			case 7:
 			{
-					int booknumber;
-					cout << "What is the book number you want to check out?  ";
-					cin >> booknumber;
-					if (c1.bookExists(booknumber))
-					{
-						std.checkOut(c1.checkOut(booknumber));	//same as above but with number
-					}
-					else
-					{
-						cout << "Sorry that book doesn't exist in the catalog." << endl;
-					}
-					break;
+				system("clear");
+
+				int booknumber;
+				cout << "What is the book number you want to check out?  ";
+				cin >> booknumber;
+				if (c1.bookExists(booknumber))
+				{
+					std.checkOut(c1.checkOut(booknumber));	//same as above but with number
+				}
+				else
+				{
+					cout << "Sorry that book doesn't exist in the catalog." << endl;
+				}
+				break;
 			}
 
 				break;
