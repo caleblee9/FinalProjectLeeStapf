@@ -39,9 +39,8 @@ Catalog::Catalog(string booklist)
 	int num;	//book number
 
 	ifstream catalog_file(booklist);
-	while (!catalog_file.eof())	
+	while (getline(catalog_file, line, '|'))	
 	{
-		getline(catalog_file, line, '|');
 		nm = line;
 		getline(catalog_file, line, '|');
 		auth = line;
@@ -50,7 +49,7 @@ Catalog::Catalog(string booklist)
 		Book tmp(nm, auth, num);	//make a tmp book
 		books.push_back(tmp);		//push tmp book to catalog
 	}	
-	catalog_file.cloose();
+	catalog_file.close();
 }
 Book Catalog::checkOut(int num) {
 	int i;
